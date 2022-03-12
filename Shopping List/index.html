@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+
+    <script src="./js/script.js"></script>
+
+    <title>Shopping List</title>
+  </head>
+
+  <body>
+
+    <div class="container">
+        <h1>Shopping List</h1>
+
+         <script>
+            // Adds an item
+            var addItem = function(array, a) {
+                if (array.indexOf(a) == -1) { // missing '=' here
+                    array.push(a); //push item
+                }
+                return array;
+            };
+            console.log(shoppingListObject); // log of item list before "Drinks" is added
+            addItem(shoppingListArray, { cheeze: 2 }); // add item on list
+            console.log(shoppingListArray); // log of final items
+
+        /* - - - - - - - - - - - - - - - - - - - */
+
+            // Delete specific item
+            console.log(shoppingListObject1);
+
+            const index = shoppingListObject1.indexOf(shoppingListObject1[0]);
+            if (index > -1) {
+                shoppingListObject1.splice(index, 1);
+            }
+        
+            console.log(shoppingListObject1); // log of final items
+        </script>
+
+    </div>
+    
+    </body>
+</html>

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <script src="./js/script.js"></script>
+
+  <title>Math in JavaScript</title>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Math in JavaScript</h1>
+
+    <script type="text/javascript">
+        // Fibonacci
+
+        function fibonacci(num) {
+            let seq = [0, 1];
+            
+            for (let i = 2; i <= num; i++) {
+                seq.push(seq[i - 1] + seq[i - 2]);
+            }
+            return seq;
+        }
+        console.log(fibonacci(2));
+        console.log(fibonacci(9));
+
+        /* - - - - - - - - - - - - - - - - - - - */
+        // Greatest common divisor of two numbers
+
+        let n1 = 108; let n2 = 66;
+
+        function findGCD(n1, n2) {
+            if (n2 == 0) { // Everything divides 0
+                return n1;
+            } else {
+                return findGCD(n2, n1 % n2);
+            }
+        }
+        console.log("The GCD of " + n1 + " and " + n2 + " is " + findGCD(n1, n2)); // Log of GCD
+        /* - - - - - - - - - - - - - - - - - - - */
+        // Binary search
+
+        // From: https://en.wikipedia.org/wiki/Binary_search_algorithm
+        // function binary_search(A, n, T) is
+        //     L := 0
+        //     R := n − 1
+        //     while L ≤ R do
+        //         m := floor((L + R) / 2)         
+        //         if A[m] > T then
+        //             R := m − 1
+        //         else if A[m] < T then
+        //             L := m + 1
+        //         else:
+        //             return m
+        //     return unsuccessful
+
+        var arr = [1, 5, 7, 9, 14, 17, 24, 36, 45, 50, 60, 70, 80, 90];
+
+        function getInterval(arr, binarySearch) {
+            var newArray = arr;
+            var length = arr.length;
+            var numInterval = Math.floor(length / 2); // finding the middle index
+
+            console.log(arr);
+            console.log("array mid value: " + arr[numInterval]);
+
+            // if (binarySearch === arr[numInterval]) return numInterval;    
+
+            if (arr[numInterval] > binarySearch) {
+                // For this case we shift the right index pointer
+                var newArray = arr.slice(0, numInterval);
+                return getInterval(newArray, binarySearch);
+
+            } else if (arr[numInterval] < binarySearch) {
+                // For this case we shift the left index pointer
+                var newArray = arr.slice(numInterval + 1, arr.length);
+                return getInterval(newArray, binarySearch);
+
+            } else {
+                // end-case the element is not in the array        
+                return numInterval; // returns 0 or undefined
+            }
+        }
+
+        console.log(getInterval(arr, 7));
+        console.log(getInterval(arr, 8)); // returns 0 or undefined
+    </script>
+
+  </div>
+
+</body>
+
+</html>

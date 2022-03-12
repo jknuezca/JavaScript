@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <script src="./js/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"
+    integrity="sha256-qXBd/EfAdjOA2FGrGAG+b3YBn2tn5A6bhz+LSgYD96k=" crossorigin="anonymous"></script>
+
+  <title>Library Software</title>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Library Software</h1>
+
+    <script type="text/javascript">
+    
+      // AddItem
+      var addItem = function (array, a) {
+        if (array.indexOf(a) == -1) { 
+          array.push(a); //push item
+        }
+        return array;
+      };
+      console.log(libraryObject); //library before addItem
+
+      addItem(libraryObject, {
+        title: 'Title',
+        category: 'Category',
+        author: 'Author',
+        type: 'Type',
+        status: true
+      });
+
+      console.log(libraryObject);
+
+      /* - - - - - - - - - - - - - - - - - - - */
+      // DeleteItem
+      const index = libraryObject.indexOf(libraryObject[0]); 
+      if (index > -1) {
+        libraryObject.splice(index, 1);
+      }
+      console.log(libraryObject);
+
+      /* - - - - - - - - - - - - - - - - - - - */
+      // Lodash findIndex
+      var find = _.findIndex(library, function (o) { return o.title == 'IT'; });
+      // => 0
+      console.log(find);
+
+      /* - - - - - - - - - - - - - - - - - - - */
+      // borrowed or available
+      for (var i = 0; i < library.length; i++) {
+        var book = "'" + library[i].title + "'" + ' by ' + library[i].author;
+
+        if (library[i].status) {
+          console.log("This book " + book + " is available.");
+        } else {
+          console.log("This book " + book + " is borrowed.");
+        }
+      }
+
+    </script>
+
+  </div>
+
+</body>
+
+</html>

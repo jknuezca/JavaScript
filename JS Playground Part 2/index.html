@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <!-- <script src="./js/script.js"></script> -->
+
+  <title>JS Playground Part 2</title>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>JS Playground Part 2</h1>
+
+    <script type="text/javascript">
+      var cake = {
+        name: 'Butter Cake',
+        desc: 'cream butter and sugar',
+        ingredients: {
+          flour: '3 cups',
+          bakingPowder: '1 tbsp.',
+          kosherSalt: '3/4 tsp.',
+          wholeMilk: '1 cup',
+          unsaltedButter: '3/4 cup',
+          eggYolks: '6'
+        }
+      };
+
+      cakeListArray = Object.entries(cake.ingredients);
+      // console.log(cakeListArray);
+
+      /* - - - - - - - - - - - - - - - - - - - */
+
+      for (var key of Object.keys(cake.ingredients)) {
+        console.log(key);
+      }
+
+      /* - - - - - - - - - - - - - - - - - - - */
+      // Tally of ingredients
+      const cakeTally = cakeListArray.reduce((currentTally, currentIng) => {
+        currentTally[currentIng] = (currentTally[currentIng] || 0) + 1
+        return currentTally
+      }, {});
+
+      console.log(cakeTally); //Tally of ingredients
+
+      /* - - - - - - - - - - - - - - - - - - - */
+      // Delete
+      const index = cakeListArray.indexOf(cakeListArray[0]);
+      if (index > -1) {
+        cakeListArray.splice(index, 1);
+      }
+
+      console.log(cakeListArray); //log of deleted ingredient index[0]
+
+      /* - - - - - - - - - - - - - - - - - - - */
+
+      function resolve(obj, path) {
+        let root = obj = [obj];
+        path = [0, ...path];
+        while (path.length > 1)
+          obj = obj[path.shift()];
+        return [obj, path[0], root];
+      }
+      Object.get = (obj, path) => {
+        let [parent, key] = resolve(obj, path);
+        return parent[key];
+      };
+
+      cake.ingredients['bakingPowder'] = '2 tbsp.';
+      console.log(Object.get(cakeListArray, [0]));//takes a string and a number
+      console.log(cake); //['bakingPowder']= '2 tbsp.' changed from 1 tbsp.
+
+    </script>
+
+  </div>
+
+</body>
+
+</html>

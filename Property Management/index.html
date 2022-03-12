@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <script src="./js/script.js"></script>
+
+  <title>Property Management</title>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Property Management</h1>
+
+    <script type="text/javascript">
+      //getRandomString
+      function getRandomString(length) {
+        var randChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var result = '';
+        for (var i = 0; i < length; i++) {
+          result += randChars.charAt(Math.floor(Math.random() * randChars.length));
+        }
+        return result;
+      }
+
+      console.log("Random String: " + getRandomString(7));//getRandomString result
+
+      /* - - - - - - - - - - - - - - - - - - - */
+      // AddItem
+      var addItem = function (array, a) {
+        if (array.indexOf(a) == -1) {
+          array.push(a); //push item
+        }
+        return array;
+      };
+      console.log(houseObject); //houseObject before addItem
+
+      addItem(houseObject, {
+        id: 3,
+        garden: '10 sq meter',
+        parkingSpace: '25 sq meter',
+        floorSpace: '50',
+        housePrice: 70000,
+        apartment: [{
+          name: 'LG-03',
+          area: '25 sq meter',
+          rent: 12500,
+          serviceCharge: '1000',
+          propertyStatus: 'rent'//sale or rent
+        }]
+      });
+
+      var objIdMap = new WeakMap, objectCount = 0;
+      function objectId(object) {
+        if (!objIdMap.has(object)) objIdMap.set(object, ++objectCount);
+        return objIdMap.get(object);
+      }
+      console.log("Added house ID: " + objectId(houseObject[2]));
+
+      console.log(houseObject); //added new house
+      // console.log("Added house ID: " + houseObject[2].id)
+      /* - - - - - - - - - - - - - - - - - - - */
+
+      var r = houseObject.find(obj => {
+        // Returns the object where the given property has some value
+        return obj.id === 2;
+      })
+      console.log("Finds a house with the ID:" + r.id);
+      console.log("Added apartment on ID: " + r.id,
+        r.apartment3 = [{
+          name: 'LG-04',
+          area: '25 sq meter',
+          rent: 12500,
+          serviceCharge: '1000',
+          propertyStatus: 'rent'//sale or rent
+        }]
+      );
+
+    
+      console.log(houseObject);
+
+      /* - - - - - - - - - - - - - - - - - - - */
+      // Create a function that deletes a specific (i.e. with identification number) house from the array.
+      const index = houseObject.indexOf(houseObject[0]);
+      if (index > -1) {
+        houseObject.splice(index, 1);
+      }
+
+      console.log(houseObject);
+
+      /* - - - - - - - - - - - - - - - - - - - */
+      const values = {
+        rent: 15000, // monthly == grossRentalIncome
+        monthsRented: 12
+      }
+
+      //assuming values.rent == grossRentalIncome
+      const rentIncome = values.rent * 0.95; //withholdingTax is 5% of grossRentalIncome
+      console.log(rentIncome);
+
+      //assuming that values.monthsRented is the "givenValue"
+      //values.monthsRented is not constant and can be replaced
+      const rentIncrease = values.rent * values.monthsRented; //depends on the number of months
+      console.log(rentIncrease);  //totalRentalIncome
+
+      // function that returns all houses ID
+      const result = houseObject.map(a => a.id); //returns all houses ID
+      console.log("House IDs: [" + result + "]");
+    </script>
+
+  </div>
+
+</body>
+
+</html>
